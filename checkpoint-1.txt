@@ -1,0 +1,68 @@
+1. What data types do each of these values represent?
+    1. String
+    2. Integer
+    3. Date
+    4. Float
+    5. Currency
+
+2. Explain when a database would be used. Explain when a text file would be used.
+
+    A database would be used when multiple sources need to access and modify a single data store simultaneously.
+    A text file could be used when only a single source is accessing and modifying data with no other concurrent processes.
+
+3. Describe one difference between SQL and other programming languages.
+
+    SQL is known as a declarative language, rather than a procedural language. This meaning that we don't have to write the procedure
+    for finding the information in the database, but rather just tell the database what we want and let the database engine concern
+    itself with finding and returning the data.
+
+4. In your own words, explain how the pieces of a database system fit together at a high level.
+
+    Relational databases are composed of a number of tables containing data. Within those tables are rows and columns describing the data
+    and cells containing the actual data. SQL gives commands to the database based on the tables, and rows and columns describing data
+    in order for the database engine to be able to determine what it is you want, which it then retrieves in whatever way it finds most efficient
+    and returns it back as the answer to your SQL query.
+
+5. Explain the meaning of table, row, column, and value.
+
+    Table - A structure for containing similar kinds of data
+    Row - A row contains multiple cells of related data all pertaining to the same "item"
+    Column - Columns contain a heading describing the data that will be contained within it and cells with values that are described by that heading
+    Value - A value is an individual entry into the database, a single point of data found in a single table cell
+
+6. List three data types that can be used in a table.
+
+    1. Integer
+    2. Float
+    3. String
+
+7. Given this payments table, provide an English description of the following queries and include their results:
+
+     SELECT date, amount        Find and return the values from the date and amount columns of the payments table
+     FROM payments;
+
+     SELECT amount              Find and return all the values from the amount column in the payments table where the value in the amount column is greater than 500
+     FROM payments
+     WHERE amount > 500;
+
+     SELECT *                   Find and return the values from all the columns of the payments table where the payee is equal to 'Mega Foods'
+     FROM payments
+     WHERE payee = 'Mega Foods';
+
+ 8. Given this users table, write SQL queries using the following criteria and include the output:
+
+    The email and sign-up date for the user named DeAndre Data.
+    The user ID for the user with email 'aleesia.algorithm@uw.edu'.
+    All the columns for the user ID equal to 4.
+
+    SELECT email, signUpDate
+    FROM users
+    WHERE name = 'Deandre Data';
+
+    SELECT userID
+    FROM users
+    WHERE email = 'aleesia.algorithm@uw.edu';
+
+    SELECT *
+    FROM users
+    WHERE userID = 4;

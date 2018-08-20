@@ -1,0 +1,86 @@
+#1
+INSERT INTO tableName VALUES (someValue(s));
+UPDATE tableName SET some new values WHERE some condition
+DELETE FROM tableName WHERE some condition
+
+#2
+Each command typically has the action verb to start the command (INSERT INTO, UPDATE, DELETE, etc) followed by the name of the table which they want to affect. The second part of the commands are parameters specific to the type of command. In an INSERT command it would be the VALUES keyword and the values you want to insert (and optionally the columns in which they belong). In an update command you would use the SET keyword along with a list of new values to set, and the WHERE keyword to specify which values should be overwritten by the new values. In a delete command you simply use the WHERE keyword and specify which values you would like to delete.
+
+#3
+Int - any integer like 1, 10, or 300. Any whole number (besides very large ones)
+Money - A montary value with a currency symbol: $132.45
+Text - A string like any other programming language: “Short-sleeved Red T-Shirt”
+Date - Accepted a variety of different date formats, e.g.: Jun-20-2011
+
+#4
+Text and Text
+Boolean
+Integer
+Float
+CREATE TABLE WeddingRSVP (
+           id integer,
+           firstName text,
+           lastName text,
+           rsvp boolean,
+           guests integer,
+           meals integer
+) ;
+ALTER TABLE WeddingRSVP ADD COLUMN thankYouCard boolean;
+ALTER TABLE WeddingRSVP DELETE COLUMN meals;
+ALTER TABLE WeddingRSVP ADD COLUMN tableNumber integer;
+DROP TABLE WeddingRSVP;
+
+#5
+CREATE TABLE LibraryBooks (
+ISBN integer,
+   name text,
+   author text,
+   genre text,
+   publishingDate date,
+   numberOfCopies integer,
+   copiesAvailable integer
+);
+INSERT INTO LibraryBooks VALUES (0805074562, ‘On Intelligence’, ‘Jeff
+Hawkins’, ‘Computer Science’, ‘2004-10-03’, 5, 2),
+(0984782869, ‘Cracking the Coding Interview: 189 Programming Questions and
+Solutions’, ‘Gayle Laakmann McDowell’, ‘Computer Science’,
+‘2015-07-01’, 3, 3),
+(1627790365, ‘Algorithms to Live By: The Computer Science
+of Human Decisions’, ‘Brian Christian’, ‘Computer Science’, ‘2016-04-19’,
+1, 0);
+UPDATE LibraryBooks SET copiesAvailable=2 WHERE ISBN=0984782869;
+DELETE FROM LibraryBooks WHERE ISBN=1627790365;
+
+#6
+CREATE TABLE Spacecrafts (
+   id integer,
+   name text,
+   year integer,
+   country text,
+   description text,
+   orbit text,
+   operating boolean,
+   milesFromEarth decimal
+);
+INSERT INTO Spacecrafts VALUES (1, ‘Olympus’, 2035, EU, ‘A mobile weapons platform orbiting the moon for the defense of Earth from invaders’, ‘Luna’, TRUE, 238700),
+(2, ‘Odysseus’, 2020, US, ‘An exploratory probe sent to discover new life’, ‘Alpha Centauri’, TRUE, 25672000000000),
+(3, ‘Gaia’, 2025, CN, ‘A colonization craft to expand the Chinese empire’, ‘Mars’, FALSE, 33900000);
+DELETE from Spacecrafts WHERE id=3;
+UPDATE Spacecrafts SET operating=FALSE WHERE id=2;
+
+#7
+CREATE TABLE Emails (
+   id integer,
+   subject text,
+   sender text,
+   additionalRecipients text,
+   bodyText text,
+   timestamp timestamp,
+   unread boolean,
+   chainId integer
+);
+INSERT INTO Emails VALUES (24, ‘New Car’, ‘KiaSales@kia.com’, ‘’, ‘Visit us for an upgrade today!’, TIMESTAMP '2004-10-19 10:23:54', FALSE, 5),
+(100, ‘You will never believe this!’, ‘Brian.Jackson@gmail.com’, ‘Jack.White@yahoo.com’, ‘I wrecked my brand new car…’, TIMESTAMP ‘2015-05-06 08:55:20’, FALSE, 25),
+(255, ‘Golden Opportunity’, ‘Western_Holdings@westho.net’, ‘’, ‘Come visit us in sandy Florida for the opportunity of a lifetime!!!’, TIMESTAMP ‘2018-07-07 12:00:00’, TRUE, 1234);
+DELETE FROM Emails WHERE id=24;
+UPDATE Emails SET unread=TRUE WHERE id=100;

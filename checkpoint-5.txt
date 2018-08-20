@@ -1,0 +1,72 @@
+#1
+SELECT column1, column2
+FROM table
+WHERE condition=value;
+
+#2
+SFW - Safe For Work (because messing it up could get you fired)
+
+#3
+SELECT name, gender, age
+FROM dogs
+WHERE breed LIKE '%Labrador%';
+
+SELECT id
+FROM dogs
+WHERE age < 1;
+
+SELECT name, age
+FROM dogs
+WHERE gender='F' AND weight > 35;
+
+SELECT *
+FROM dogs
+WHERE breed NOT LIKE '%Shepard%';
+
+SELECT id, age, weight, breed
+FROM dogs
+WHERE weight > 60 OR breed='Great Dane';
+
+4.
+The name an adoption date of all cats in the table
+The name and age of all cats in the table
+
+5.
+SELECT *
+FROM cats
+WHERE adoption_date=NULL;
+
+SELECT name, sex
+FROM cats
+WHERE age=7;
+
+SELECT name
+FROM cats;
+
+6.
+>, When selecting cats from a database which weigh more than 10lbs (weight > 10)
+<, When selecting for dogs from a database weighing less than 10lbs (weight < 10)
+=, When you want to choose a song from a database with an exact title (title = 'your title here')
+<=, When selecting fossils from your fossil collection database, you want fossils that are no older than but including 200 years old (age <= 200)
+>=, When selecting a rope from your rope database, you want to find a rope that is at least 20ft long (length >= 20)
+!=, In a database of books, if you were trying to select all books that were NOT titled 'Redwall' (title != 'Redwall')
+<>, If you were selecting clothing sizes from your clothing database, you could use this operator to select all sizes besides (greater than and less than) size 4 (size <> 4)
+LIKE, If you had a database of movies, but you could only remember that the title had the word October in it, you could use LIKE to select movies containing that part of the title (title LIKE %October%)
+BETWEEN, When selecting a length of wood from your company inventory database, you want to select only pieces between 4 and 8ft (length BETWEEN 4 AND 8)
+IS DISTINCT FROM, If you would like to select pets from your shelter database that were not adopted a certain number of days ago, but some animals may not yet be adopted and thus the value will be NULL,
+    you can use IS DISTINCT FROM to specify (daysSinceAdoption IS DISTINCT FROM 10)
+IS TRUE / IS FALSE, In your satellite database, you would like to find satellites that are still operational. However, some may not have launched yet (and will contain NULL values) so you want
+    to use IS TRUE to find operational satellites (operational IS TRUE)
+IS NULL, If you were cleaning up your personal CD collection database, but had added a column for purchase date since entering some of the information originally, you would want to use IS NULL
+    to find which items need to have their purchase dates entered in, and not include ones which you have entered with this column already since creating it (purchase_date IS NULL);
+AND, If you were searching for shirts in a clothing database, you may want to search for shirts that are both yellow and in your size (color = 'Yellow' AND size = 'M')
+OR, If you were searching a movie showing database, but hadn't yet decided between two movies you wanted to watch, you could use OR to search for and return
+    both the results (title = "Black Panther" or "Ant Man")
+NOT, You are searching a poster database for posters you may like, but you HATE pink posters. So you could use the NOT command to search for posters whose color isn't pink (NOT color = 'Pink')
+
+7.
+Seashell, Nala
+
+Mushi, Seashell, Victoire, Nala
+
+3, 4

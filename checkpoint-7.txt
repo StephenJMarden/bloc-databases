@@ -1,0 +1,90 @@
+1.  You can find related data in different tables by performing a join.
+
+2.  An inner join takes information from both tables based on a shared list of values they have in common. For example, if you have a list of
+    names and addresses, and you also have a list of names and phone numbers, an inner join would give you a list of all of the names that are
+    listed on BOTH tables, and the associated addresses and phone numbers into  one bigger table which would list a name, address, and phone number
+    for each row.
+
+    Both forms of outer join are very similar. An left outer join takes all of the rows from the left table and only the matching rows from the right.
+    This will leave the number of rows in the new table the same, but any additional information based on the key provided that can be taken from the
+    right table is added to the left. A right outer join is the same concept but with the opposite table as the primary table. The rows from the right
+    table will be used, and any information associated with the key provided to the left will be pulled and added to the right table. To give an example
+    of these sorts of outer join: You have a list of restaurants near your location, with an ID key, their addresses, phone numbers, names, and the type
+    of food they serve on the left. On the right, you have a list of restaurants with an ID key, a name, an average rating based on user scores, and the
+    average price of their meals. If you were to perform a left join based on restaurant name, any restaurant named on the right table that also exists
+    on the left would have its information about reviews and average prices taken and added to the left table. In the opposite join (right outer join)
+    the right table would be the primary table, and any names that also exist on the left table would add their address, phone number, and food type to
+    the table on the right.
+
+3.  A primary key is a unique identifying value for each row on a table, like an ID number. A foreign key is a value that is not necessarily unique on a
+    table but which is a primary (unique) key on another table, allowing them to be joined based on this key. For example, say you have access to a list
+    of driving records with the unique primary key being the driver's license number (because this number is unique to each individual in the state.)
+    You also have a list of suitable applicants to a truck driving job in which the applicants provided their driver's license number but it is not
+    necessarily a unique key (some applicants may have applied multiple times.) On the table of applicants, the driver's license number is a foreign key
+    because it is a primary key on the driving records table, and it could be used as a point to join the two tables together to help you make a hiring decision.
+
+4.  Aliasing is just creating shorter variable names for table names in queries, to make typing queries faster.
+
+5.  SELECT p.name, c.salary,
+    c.vacation_days FROM professor AS p
+    JOIN compensation AS c
+    ON p.id = c.professor_id;
+
+6.  You would use a natural join if you wanted to find all the shared information in two tables without specifying which information directly, instead wanting
+    to just join all information possible from both tables. If you are trying to build a larger, most exhaustive table of information but you have several smaller
+    tables which have bits of information on each item in your larger table, you may want to perform natural joins in order to get the most complete picture of
+    information on as many items as possible.
+
+7.  SELECT scheduled_shifts.shift_id, employees.name,
+    shifts.date, shifts.start_time, shifts.end_time
+    FROM scheduled_shifts
+    JOIN shifts ON shift_id = shifts.id
+    JOIN employees ON employee_id = employees.id
+    ORDER BY shift_id;
+
+8.
+    a)  SELECT volunteers.first_name, volunteers.last_name, dogs.name
+        FROM volunteers
+        LEFT OUTER JOIN dogs ON volunteers.foster_dog_id = dogs.id;
+
+    b)  SELECT cats.name, adopters.first_name, adopters.last_name, cat_adoptions.date
+        FROM cat_adoptions
+        JOIN cats ON cats.id = cat_adoptions.cat_id
+        JOIN adopters ON adopters.id = cat_adoptions.adopter_id
+        WHERE cat_adoptions.date >= CURRENT_DATE - INTERVAL '30 DAYS';
+
+    c)  SELECT adopters.first_name, adopters.last_name
+        FROM adopters
+        LEFT OUTER JOIN dog_adoptions ON adopters.id = dog_adoptions.adopter_id
+        WHERE dog_adoptions.dog_id IS NULL;
+
+    d)  SELECT dogs.name
+        FROM dogs
+        LEFT OUTER JOIN dog_adoptions on dog_adoptions.dog_id = dogs.id
+        WHERE dog_adoptions.date IS NULL
+        UNION
+        SELECT cats.name
+        FROM cats
+        LEFT OUTER JOIN cat_adoptions on cat_adoptions.cat_id = cats.id
+        WHERE cat_adoptions.date IS NULL;
+
+    e)  SELECT adopters.first_name, adopters.last_name
+        FROM adopters
+        LEFT OUTER JOIN dog_adoptions ON dog_adoptions.adopter_id = adopters.id
+        LEFT OUTER JOIN dogs ON dogs.id = dog_adoptions.dog_id
+        WHERE dogs.name = 'Rosco';
+
+9.
+    a)  SELECT patrons.name
+        FROM books
+        JOIN holds ON holds.isbn = books.isbn
+        JOIN patrons on patrons.id = holds.patron_id
+        WHERE books.isbn = '9136884926'
+        ORDER BY holds.rank;
+
+    b)  SELECT patrons.name, books.title AS titles_checked_out
+        FROM patrons
+        LEFT OUTER JOIN transactions ON patrons.id = transactions.patron_id
+        AND transactions.checked_in_date IS NULL
+        LEFT OUTER JOIN books ON books.isbn = transactions.isbn
+        WHERE transactions.checked_in_date IS NULL;
